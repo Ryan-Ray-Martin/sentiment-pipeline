@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ## Deployment: 
 
 ### Step 1: Set up a kubernetes cluster on GCP. 
