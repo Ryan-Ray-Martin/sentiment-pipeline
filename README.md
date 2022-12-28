@@ -17,6 +17,14 @@ docker push gcr.io/intrinsic-capital-research/sentiment-pipeline:kuberay
 ## Step 2: Set up a kubernetes cluster on GCP. 
 ### -> e2-standard-16, 16 vCPU, 64 GB RAM
 
+gcloud container clusters create example-cluster \
+    --num-nodes=2 \
+    --zone=us-central1-a \
+    --node-locations=us-central1-a,us-central1-b,us-central1-f \
+    --enable-autoscaling --min-nodes=2 --max-nodes=11 \
+    --machine-type e2-standard-16
+
+
 gcloud container clusters create ray-cluster-autoscaler \
     --num-nodes 1 --min-nodes 2 --max-nodes 11 --enable-autoscaling \
     --zone us-central1-c --machine-type e2-standard-16
