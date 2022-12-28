@@ -4,11 +4,11 @@
 ## Step 1: Build the container based on ray worker image.
 ### Build the image:
 
-docker build -t <path-to-your-image> -f Dockerfile .
+docker build -t [path-to-your-image] -f Dockerfile .
 
 ### Push image to repo: 
 
-docker push <path-to-your-image>
+docker push [path-to-your-image]
 
 ## Step 2: Set up a kubernetes cluster on GCP. 
 ### -> e2-standard-16, 16 vCPU, 64 GB RAM
@@ -24,7 +24,7 @@ kubectl create -k "github.com/ray-project/kuberay/ray-operator/config/default?re
 
 ### Create a ray cluster with ray cluster manifest:
 
-kubectl apply -f {$RAY-CLUSTER-MANIFEST}
+kubectl apply -f [ray-cluster-manifest.yaml]
 
 ### -> note: ensure that settings in manifest contain the following values
 #### namespace: %your_name%
