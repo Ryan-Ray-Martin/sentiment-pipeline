@@ -18,8 +18,8 @@ docker push gcr.io/intrinsic-capital-research/sentiment-pipeline:kuberay
 ### -> e2-standard-16, 16 vCPU, 64 GB RAM
 
 gcloud container clusters create ray-cluster-autoscaler \
-    --num-nodes=1 --min-nodes 0 --max-nodes 1 --enable-autoscaling \
-    --zone=us-central1-c --machine-type e2-standard-16
+    --num-nodes 1 --min-nodes 2 --max-nodes 11 --enable-autoscaling \
+    --zone us-central1-c --machine-type e2-standard-16
 
 ## Step 3:  Deploy the ray cluster on kubernetes with the KubeRay operator
 ### Create the KubeRay operator:

@@ -10,5 +10,9 @@ spec:
           imagePullPolicy: Always
           image: gcr.io/intrinsic-research-capital/sentiment-pipeline:kuberay
           command: ["python", "finbert_serve.py"]
+          resources:
+            requests:
+              cpu: 1000m
+              memory: 2Gi
       restartPolicy: Never
   backoffLimit: 0
