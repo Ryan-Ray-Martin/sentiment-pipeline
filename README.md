@@ -23,10 +23,11 @@ gcloud container clusters create ray-cluster-autoscaler \
 kubectl create -k "github.com/ray-project/kuberay/ray-operator/config/default?ref=v0.3.0&timeout=90s"
 
 #### Create a ray cluster with ray cluster manifest:
-#### -> ensure that settings in manifest contain the following values
-##### namespace: %your_name%
-##### image:  %your_image%
 
 kubectl apply -f {$RAY-CLUSTER-MANIFEST}
+
+#### -> note: ensure that settings in manifest contain the following values
+##### namespace: %your_name%
+##### image:  %your_image%
 
 
