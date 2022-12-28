@@ -30,4 +30,13 @@ kubectl apply -f [ray-cluster-manifest.yaml]
 #### namespace: %your_name%
 #### image:  %your_image%
 
+### -> check out cluster with the following commands:
+
+kubectl get pods -n [user-name]
+
+### -> verify that service endpoints are created: 
+
+kubectl get services -n [user-name]
+
+
 
