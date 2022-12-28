@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: serve-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: finbert-serve
+          imagePullPolicy: Always
+          image: gcr.io/intrinsic-research-capital/sentiment-pipeline:kuberay
+          command: ["python", "finbert_serve.py"]
+      restartPolicy: Never
+  backoffLimit: 0

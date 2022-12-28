@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: inference-job
+spec:
+  schedule: "30 15 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: inference-container
+              image: gcr.io/intrinsic-research-capital/sentiment-pipeline:kuberay
+              imagePullPolicy: Always
+              command: ["python", "business_sentiment.py"]
+          restartPolicy: OnFailure

@@ -9,7 +9,7 @@ from ray import serve
 
 # initialize ray cluster with ray start --head, then run python 
 # use ray stop to stop all ray processes
-ray.init(address="auto", namespace="serve")
+ray.init(address="ray://raycluster-autoscaler-head-svc:10001", namespace="serve")
 serve.start(detached=True)
 # 1: Wrap the pretrained sentiment analysis model in a Serve deployment.
 @serve.deployment(route_prefix="/finbert")
@@ -28,7 +28,7 @@ SentimentAnalysisDeployment.deploy()
 # 3: Query the deployment and print the result.
 print(
     requests.get(
-        "http://localhost:8000/finbert", params={"text": "Stocks rallied and the British pound gained."}
+        "http://raycluster-autoscaler-head-svc:8000/finbert", params={"text": "Stocks rallied and the British pound gained."}
     ).json()
 )
 # when return all scores is true: [{'label': 'positive', 'score': 0.898361325263977}, 

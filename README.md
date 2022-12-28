@@ -6,15 +6,19 @@
 
 docker build -t [path-to-your-image] -f Dockerfile .
 
+docker build -t gcr.io/intrinsic-research-capital/sentiment-pipeline:kuberay -f Dockerfile .
+
 ### Push image to repo: 
 
 docker push [path-to-your-image]
+
+docker push gcr.io/intrinsic-capital-research/sentiment-pipeline:kuberay
 
 ## Step 2: Set up a kubernetes cluster on GCP. 
 ### -> e2-standard-16, 16 vCPU, 64 GB RAM
 
 gcloud container clusters create ray-cluster-autoscaler \
-    --num-nodes=1 --min-nodes 2 --max-nodes 11 --enable-autoscaling \
+    --num-nodes=1 --min-nodes 0 --max-nodes 1 --enable-autoscaling \
     --zone=us-central1-c --machine-type e2-standard-16
 
 ## Step 3:  Deploy the ray cluster on kubernetes with the KubeRay operator
@@ -37,6 +41,9 @@ kubectl get pods -n [user-name]
 ### -> verify that service endpoints are created: 
 
 kubectl get services -n [user-name]
+
+
+# raycluster-autoscaler-head-svc 
 
 
 
