@@ -12,7 +12,7 @@ docker build -t gcr.io/intrinsic-research-capital/sentiment-pipeline:kuberay -f 
 
 docker push [path-to-your-image]
 
-docker push gcr.io/intrinsic-capital-research/sentiment-pipeline:kuberay
+docker push gcr.io/intrinsic-research-capital/sentiment-pipeline:kuberay
 
 ## Step 2: Set up a kubernetes cluster on GCP. 
 ### -> e2-standard-16, 16 vCPU, 64 GB RAM
