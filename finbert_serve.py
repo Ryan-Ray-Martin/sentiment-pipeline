@@ -6,7 +6,7 @@ from transformers import pipeline
 import ray
 from ray import serve
 
-ray.init(address="ray://raycluster-autoscaler-head-svc:10001", namespace="serve")
+ray.init(address="ray://example-cluster-head-svc:10001", namespace="serve")
 serve.start(detached=True, http_options={"host": "0.0.0.0"})
 
 @serve.deployment(route_prefix="/finbert")

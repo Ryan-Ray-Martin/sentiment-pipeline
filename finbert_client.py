@@ -2,7 +2,7 @@ import requests
 
 print(
     requests.get(
-        "http://raycluster-autoscaler-head-svc:8000/serve/finbert", params={"text": "Stocks rallied and the British pound gained."}
+        "http://example-cluster-head-svc:8000/serve/finbert", params={"text": "Stocks rallied and the British pound gained."}
     ).json()
 )
 

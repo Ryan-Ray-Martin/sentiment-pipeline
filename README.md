@@ -14,20 +14,32 @@ docker push [path-to-your-image]
 
 docker push gcr.io/intrinsic-research-capital/sentiment-pipeline:kuberay
 
-## Step 2: Set up a kubernetes cluster on GCP. 
+## Step 2: Set up a kubernetes production cluster on GCP. 
 ### -> e2-standard-16, 16 vCPU, 64 GB RAM
 
-gcloud container clusters create example-cluster \
-    --num-nodes=2 \
-    --zone=us-central1-a \
-    --node-locations=us-central1-a,us-central1-b,us-central1-f \
-    --enable-autoscaling --min-nodes=2 --max-nodes=11 \
-    --machine-type e2-standard-16
+gcloud container clusters create ray-cluster \
+    --num-nodes=1 --min-nodes 2 --max-nodes=11 --enable-autoscaling \
+    --zone=us-central1-c --machine-type e2-standard-16
 
+ 
+gcloud container node-pools create ray-cluster-node-pool \
+    --num-nodes=1 --min-nodes 2 --max-nodes=11 --enable-autoscaling \
+    --zone=us-central1-c --cluster ray-cluster --machine-type e2-standard-16 \
+    --location-policy=ANY
 
-gcloud container clusters create ray-cluster-autoscaler \
-    --num-nodes 1 --min-nodes 2 --max-nodes 11 --enable-autoscaling \
-    --zone us-central1-c --machine-type e2-standard-16
+## Note: For a demo Kubernetes cluster on GCP
+# Create a node-pool for a CPU-only head node
+# e2-standard-8 => 8 vCPU; 32 GB RAM
+gcloud container clusters create ray-cluster \
+    --num-nodes=1 --min-nodes 0 --max-nodes 1 --enable-autoscaling \
+    --zone=us-central1-c --machine-type e2-standard-8
+
+# Create a node-pool for GPU. The node is for a GPU Ray worker node.
+# n1-standard-8 => 8 vCPU; 30 GB RAM
+gcloud container node-pools create ray-node-pool \
+  --zone us-central1-c --cluster ray-cluster \
+  --num-nodes 1 --min-nodes 0 --max-nodes 1 --enable-autoscaling \
+  --machine-type n1-standard-8
 
 ## Step 3:  Deploy the ray cluster on kubernetes with the KubeRay operator
 ### Create the KubeRay operator:
