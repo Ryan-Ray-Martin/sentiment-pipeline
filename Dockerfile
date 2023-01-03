@@ -1,7 +1,9 @@
 FROM rayproject/ray:nightly
 
-COPY *.py /opt/
-COPY *.txt /opt/
+WORKDIR /app
+
+COPY *.py /app/
+COPY *.txt /app/
 
 RUN pip install --upgrade pip &&\
-    pip install -r /opt/requirements.txt
+    pip install -r /app/requirements.txt
