@@ -2,7 +2,7 @@ import requests
 
 print(
     requests.get(
-        "http://example-cluster-head-svc:8000/serve/finbert", params={"text": "Stocks rallied and the British pound gained."}
+        "http://localhost:8000/", params={"text": "Stocks rallied and the British pound gained."}
     ).json()
 )
 
