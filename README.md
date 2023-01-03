@@ -46,6 +46,10 @@ gcloud container node-pools create ray-node-pool \
 
 kubectl create -k "github.com/ray-project/kuberay/ray-operator/config/default?ref=v0.3.0&timeout=90s"
 
+kubectl get deployments -n ray-system
+
+kubectl get pods -n ray-system
+
 ### Create a ray cluster with ray cluster manifest:
 
 kubectl apply -f [ray-cluster-manifest.yaml]
@@ -67,3 +71,5 @@ kubectl get services -n [user-name]
 
 
 
+
+serve build finbert_serve:sentiment -k -o sentiment_config.yaml

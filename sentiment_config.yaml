@@ -1,0 +1,14 @@
+# This file was generated using the `serve build` command on Ray v2.1.0.
+
+importPath: finbert_serve:sentiment
+
+runtimeEnv: '{}'
+
+host: 0.0.0.0
+
+port: 8000
+
+deployments:
+
+- name: SentimentAnalysisDeployment
+  routePrefix: /
