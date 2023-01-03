@@ -50,7 +50,7 @@ def connect_with_connector() -> sqlalchemy.engine.base.Engine:
     return pool
 
 def query(payload):
-    return requests.get("http://localhost:8000/finbert", params={"text": str(payload)}).json()
+    return requests.get("http://raycluster-autoscaler-head-svc:8000/serve/finbert", params={"text": str(payload)}).json()
 
 def extract() -> dict:
     data = {'headline': [], 'summary': [], 'date': []}
