@@ -11,14 +11,13 @@ spec:
   deploymentUnhealthySecondThreshold: 300 # Config for the health check threshold for deployments. Default value is 60.
   serveConfig:
     importPath: finbert_serve:sentiment
-    runtimeEnv: "{}"
     deployments:
       - name: SentimentAnalysisDeployment
         routePrefix: /
         rayActorOptions:
           numCpus: 0.1
   rayClusterConfig:
-    rayVersion: "2.0.0" # should match the Ray version in the image of the containers
+    rayVersion: "2.2.0" # should match the Ray version in the image of the containers
     ######################headGroupSpecs#################################
     # head group template and specs, (perhaps 'group' is not needed in the name)
     headGroupSpec:
