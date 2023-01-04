@@ -54,22 +54,31 @@ kubectl get pods -n ray-system
 
 kubectl apply -f [ray-cluster-manifest.yaml]
 
+#### In this example, we used 
+
+kubectl apply -f ray_v1alpha1_rayservice.yaml
+
+#### To view the services and pods, we ran
+
+kubectl get rayservices
+
+kubectl get pods
+
+kubectl get services
+
+### Step 4: We then query the ML server with port forewarding to allow access outside the cluster
+
+kubectl port-forward service/rayservice-sample-serve-svc 8000
+
+#### Then use the python client to get a response:
+
+cd sentiment-pipeline
+
+python finbert_client.py
+
 ### -> note: ensure that settings in manifest contain the following values
-#### namespace: %your_name%
 #### image:  %your_image%
 
-### -> check out cluster with the following commands:
-
-kubectl get pods -n [user-name]
-
-### -> verify that service endpoints are created: 
-
-kubectl get services -n [user-name]
-
-
-# raycluster-autoscaler-head-svc 
-
-
-
-
+#### We created a serve config and deleted the runtime env because we already containerized our application. 
+#### An example can be found here: https://docs.ray.io/en/master/serve/production-guide/kubernetes.html
 serve build finbert_serve:sentiment -k -o sentiment_config.yaml
