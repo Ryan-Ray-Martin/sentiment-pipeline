@@ -34,16 +34,15 @@ def parse_response(response):
         if is_valid(article, date) and 'Business' in article['section_name']:
             data['date'].append(date)
             data['headline'].append(article['headline']['main']) 
-    return pd.DataFrame(data) 
+    return pd.DataFrame(data)
 
 if __name__ == '__main__':
     dp = DataPipeline()
     end = datetime.date.today()
-    start = datetime.date(2022, 12, 1)
+    start = datetime.date(2010, 12, 1)
     months_in_range = [x.split(' ') for x in pd.date_range(start, end, freq='MS').strftime("%Y %-m").tolist()]
     for date in tqdm(months_in_range):
         response = send_request(date)
         data = parse_response(response)
         df = dp.transform(data)
-        print(df)
-        #dp.load(df)
+        dp.load(df)
