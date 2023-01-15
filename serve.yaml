@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: serve-job
+  name: archive-job
 spec:
   template:
     spec:
@@ -9,7 +9,7 @@ spec:
         - name: finbert-serve
           imagePullPolicy: Always
           image: gcr.io/intrinsic-research-capital/sentiment-pipeline:kuberay
-          command: ["python", "finbert_serve.py"]
+          command: ["python", "archive_sentiment.py"]
           resources:
             requests:
               cpu: 1000m
