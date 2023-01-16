@@ -1,4 +1,9 @@
 
+# create env
+python3 -m venv venv
+source venv/bin/activate
+
+
 # Deployment: 
 
 ## Step 1: Build the container based on ray worker image.
@@ -82,3 +87,10 @@ python finbert_client.py
 #### We created a serve config and deleted the runtime env because we already containerized our application. 
 #### An example can be found here: https://docs.ray.io/en/master/serve/production-guide/kubernetes.html
 serve build finbert_serve:sentiment -k -o sentiment_config.yaml
+
+#### Connect Cloud SQL to GKE
+
+Step 1: Create a KSA
+
+Step 2: Bind GSA to KSA
+
