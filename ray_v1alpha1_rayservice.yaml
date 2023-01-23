@@ -53,7 +53,7 @@ spec:
         spec:
           containers:
             - name: ray-head
-              image: gcr.io/intrinsic-research-capital/sentiment-pipeline:kuberay
+              image: gcr.io/intrinsic-research/sentiment-pipeline:kuberay
               imagePullPolicy: Always
               #image: bonsaidev.azurecr.io/bonsai/lazer-0-9-0-cpu:dev
               env:
@@ -118,7 +118,7 @@ spec:
                   ]
             containers:
               - name: machine-learning # must consist of lower case alphanumeric characters or '-', and must start and end with an alphanumeric character (e.g. 'my-name',  or '123-abc'
-                image: gcr.io/intrinsic-research-capital/sentiment-pipeline:kuberay
+                image: gcr.io/intrinsic-research/sentiment-pipeline:kuberay
                 imagePullPolicy: Always
                 # environment variables to set in the container.Optional.
                 # Refer to https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/
