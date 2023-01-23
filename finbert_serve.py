@@ -15,3 +15,7 @@ class SentimentAnalysisDeployment:
 
 # 2: Deploy the deployment.
 sentiment = SentimentAnalysisDeployment.bind()
+
+# to run use: serve run finbert_serve:sentiment
+# source: https://docs.ray.io/en/latest/serve/getting_started.html
+

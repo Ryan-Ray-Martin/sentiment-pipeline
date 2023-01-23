@@ -1,6 +1,6 @@
 import requests
 import sqlalchemy
-from cloud_tcp import connect_tcp_socket
+from cloud_sql import connect_with_connector
 from tqdm.auto import tqdm
 
 class DataPipeline:
@@ -26,5 +26,5 @@ class DataPipeline:
         return df
 
     def load(self, df: dict)-> sqlalchemy.engine.base.Engine:
-        pool = connect_tcp_socket()
+        pool = connect_with_connector()
         df.to_sql('nytimes', con=pool, if_exists='append', index=False)

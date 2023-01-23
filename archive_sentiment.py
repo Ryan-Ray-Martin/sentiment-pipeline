@@ -3,7 +3,7 @@ import requests
 import time
 import dateutil
 import datetime
-import config
+import os
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 from typing import List
@@ -13,7 +13,7 @@ from tqdm import tqdm
 def send_request(date):
     '''Sends a request to the NYT Archive API for given date.'''
     base_url = 'https://api.nytimes.com/svc/archive/v1/'
-    url = base_url + '/' + date[0] + '/' + date[1] + '.json?api-key=' + config.NYTIMES_API
+    url = base_url + '/' + date[0] + '/' + date[1] + '.json?api-key=' + os.environ["NYTIMES_API"]
     response = requests.get(url).json()
     time.sleep(6)
     return response
@@ -39,10 +39,13 @@ def parse_response(response):
 if __name__ == '__main__':
     dp = DataPipeline()
     end = datetime.date.today()
-    start = datetime.date(2010, 12, 1)
+    start = datetime.date(2022, 10, 1)
     months_in_range = [x.split(' ') for x in pd.date_range(start, end, freq='MS').strftime("%Y %-m").tolist()]
-    for date in tqdm(months_in_range):
+    month_object = tqdm(months_in_range)
+    for date in month_object:
+        month_object.set_description(f"Month in progress: {date}")
         response = send_request(date)
         data = parse_response(response)
         df = dp.transform(data)
+        #df.to_csv('nytimes_sentiment/{}_{}'.format(date[0], date[1]))
         dp.load(df)
