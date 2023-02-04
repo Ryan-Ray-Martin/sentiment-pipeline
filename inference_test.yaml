@@ -28,12 +28,12 @@ spec:
                   name: db-secret
                   key: db_name
             - name: DB_HOST
-              valurFrom:
+              valueFrom:
                 secretKeyRef:
                   name: db_secret
                   key: db_host
             - name: INSTANCE_HOST
-              valurFrom:
+              valueFrom:
                 secretKeyRef:
                   name: db_secret
                   key: instance_host
