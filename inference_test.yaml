@@ -26,7 +26,7 @@ spec:
               secretKeyRef:
                 name: db-secret
                 key: db_name
-        - name: cloud-sql-proxy
+      - name: cloud-sql-proxy
         # It is recommended to use the latest version of the Cloud SQL proxy
         # Make sure to update on a regular schedule!
         image: gcr.io/cloudsql-docker/gce-proxy:1.28.0 # make sure the use the latest version
