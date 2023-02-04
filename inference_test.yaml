@@ -8,7 +8,7 @@ spec:
       containers:
         - name: finbert-serve
           imagePullPolicy: Always
-          image: gcr.io/intrinsic/sentiment-pipeline:kuberay
+          image: gcr.io/intrinsic-376122/sentiment-pipeline:kuberay
           command: ["python", "business_sentiment.py"]
           env:
           - name: DB_USER
