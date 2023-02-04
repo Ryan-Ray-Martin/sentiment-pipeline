@@ -27,15 +27,15 @@ spec:
                 secretKeyRef:
                   name: db-secret
                   key: db_name
-            - name: DB_HOST
+            - name: DB_PORT
               valueFrom:
                 secretKeyRef:
-                  name: db_secret
-                  key: db_host
+                  name: db-secret
+                  key: db_port
             - name: INSTANCE_HOST
               valueFrom:
                 secretKeyRef:
-                  name: db_secret
+                  name: db-secret
                   key: instance_host
         - name: cloud-sql-proxy
           # It is recommended to use the latest version of the Cloud SQL proxy

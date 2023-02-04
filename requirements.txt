@@ -2,9 +2,9 @@ ray[all]
 torch
 torchvision
 transformers
-sqlalchemy
+sqlalchemy==1.4.46
 requests
-pandas
+pandas==1.5.2
 datetime
 feedparser
 cloud-sql-python-connector[pg8000]
