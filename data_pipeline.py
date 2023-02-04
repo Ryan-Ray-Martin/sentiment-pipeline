@@ -8,7 +8,7 @@ class DataPipeline:
         pass
 
     def query(self, payload):
-        return requests.get("http://localhost:8000/", params={"text": str(payload)}).json()
+        return requests.get("http://rayservice-sample-serve-svc:8000/", params={"text": str(payload)}).json()
 
     def transform(self, df: dict) -> dict:
         sentiments = ["positive", "negative", "neutral"]

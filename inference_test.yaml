@@ -27,6 +27,16 @@ spec:
                 secretKeyRef:
                   name: db-secret
                   key: db_name
+            - name: DB_HOST
+              valurFrom:
+                secretKeyRef:
+                  name: db_secret
+                  key: db_host
+            - name: INSTANCE_HOST
+              valurFrom:
+                secretKeyRef:
+                  name: db_secret
+                  key: instance_host
         - name: cloud-sql-proxy
           # It is recommended to use the latest version of the Cloud SQL proxy
           # Make sure to update on a regular schedule!
