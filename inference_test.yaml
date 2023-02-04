@@ -3,9 +3,6 @@ kind: Job
 metadata:
   name: sentiment-job
 spec:
-  selector:
-    matchLabels:
-      app: finbert-serve
   template:
     metadata:
       labels:
