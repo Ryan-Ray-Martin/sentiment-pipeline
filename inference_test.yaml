@@ -4,9 +4,6 @@ metadata:
   name: sentiment-job
 spec:
   template:
-    metadata:
-      labels:
-        app: finbert-serve
     spec:
       serviceAccountName: default
       containers:
