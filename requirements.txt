@@ -4,7 +4,7 @@ torchvision
 transformers
 sqlalchemy==1.4.46
 requests
-pandas==1.5.2
+pandas
 datetime
 feedparser
 cloud-sql-python-connector[pg8000]
