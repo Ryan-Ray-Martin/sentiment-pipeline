@@ -46,7 +46,7 @@ spec:
 
             # If connecting from a VPC-native GKE cluster, you can use the
             # following flag to have the proxy connect over private IP
-            # - "-ip_address_types=PRIVATE"
+            - "-ip_address_types=PRIVATE"
 
             # By default, the proxy will write all logs to stderr. In some
             # environments, anything printed to stderr is consider an error. To
