@@ -73,8 +73,6 @@ class NYTimesDataModel:
 
 if __name__ == '__main__':
     args = parser.parse_args()
-    start_date = args.start_datetime
-    stop_date = args.stop_datetime
-    NYTimesDataModel(start=start_date, stop=stop_date).extract()
+    NYTimesDataModel(start=args.start_datetime, stop=args.stop_datetime).extract()
 
     
