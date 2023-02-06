@@ -60,6 +60,7 @@ class NYTimesDataModel:
         return pd.DataFrame(data)
 
     def extract(self) -> pd.DataFrame:
+        '''performs an ETL process on data for each month'''
         months_in_range = [x.split(' ') for x in pd.date_range(self.start, self.stop, freq='MS').strftime("%Y %-m").tolist()]
         month_object = tqdm(months_in_range)
         for date in month_object:
