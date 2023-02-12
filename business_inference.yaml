@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sentiment-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: finbert-serve
+          imagePullPolicy: Always
+          image: gcr.io/intrinsic-376122/sentiment-pipeline:kuberay
+          command: ["python", "business_sentiment.py"]
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: db_user
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: db_pass
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: db_name
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: db_port
+            - name: INSTANCE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: instance_host
+      restartPolicy: OnFailure
