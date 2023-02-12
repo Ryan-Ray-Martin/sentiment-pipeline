@@ -1,6 +1,6 @@
 ray[all]
-torch
-torchvision
+torch==1.9.0
+torchvision==0.10.0
 transformers
 sqlalchemy==1.4.46
 requests
