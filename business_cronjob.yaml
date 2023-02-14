@@ -1,4 +1,4 @@
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: sentiment-cronjob
@@ -9,30 +9,30 @@ spec:
       template:
         spec:
           containers:
-          - name: inference-container
-            image: gcr.io/intrinsic-research/sentiment-pipeline:kuberay
-            imagePullPolicy: Always
-            command: ["python", "business_sentiment.py"]
-            env:
-            - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: db-secret
-                  key: db_user
-            - name: DB_PASS
-              valueFrom:
-                secretKeyRef:
-                  name: db-secret
-                  key: db_pass
-            - name: DB_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: db-secret
-                  key: db_name
-            - name: INSTANCE_CONNECTION_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: db-secret
-                  key: instance_connection_name 
+            - name: inference-container
+              image: gcr.io/intrinsic-research/sentiment-pipeline:kuberay
+              imagePullPolicy: Always
+              command: ["python", "business_sentiment.py"]
+              env:
+                - name: DB_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: db-secret
+                      key: db_user
+                - name: DB_PASS
+                  valueFrom:
+                    secretKeyRef:
+                      name: db-secret
+                      key: db_pass
+                - name: DB_NAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: db-secret
+                      key: db_name
+                - name: INSTANCE_CONNECTION_NAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: db-secret
+                      key: instance_connection_name
           restartPolicy: OnFailure
       backoffLimit: 0
