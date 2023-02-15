@@ -9,8 +9,8 @@ spec:
       template:
         spec:
           containers:
-            - name: inference-container
-              image: gcr.io/intrinsic-research/sentiment-pipeline:kuberay
+            - name: finbert-serve
+              image: gcr.io/intrinsic-376122/sentiment-pipeline:kuberay
               imagePullPolicy: Always
               command: ["python", "business_sentiment.py"]
               env:
