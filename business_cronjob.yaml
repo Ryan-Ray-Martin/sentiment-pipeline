@@ -3,15 +3,15 @@ kind: CronJob
 metadata:
   name: sentiment-cronjob
 spec:
-  schedule: "59 23 * * *"
+  schedule: "50 17 * * *"
   jobTemplate:
     spec:
       template:
         spec:
           containers:
-            - name: inference-container
-              image: gcr.io/intrinsic-research/sentiment-pipeline:kuberay
+            - name: finbert-serve
               imagePullPolicy: Always
+              image: gcr.io/intrinsic-research/sentiment-pipeline:kuberay
               command: ["python", "business_sentiment.py"]
               env:
                 - name: DB_USER
@@ -29,10 +29,15 @@ spec:
                     secretKeyRef:
                       name: db-secret
                       key: db_name
-                - name: INSTANCE_CONNECTION_NAME
+                - name: DB_PORT
                   valueFrom:
                     secretKeyRef:
                       name: db-secret
-                      key: instance_connection_name
+                      key: db_port
+                - name: INSTANCE_HOST
+                  valueFrom:
+                    secretKeyRef:
+                      name: db-secret
+                      key: instance_host
           restartPolicy: OnFailure
       backoffLimit: 0
