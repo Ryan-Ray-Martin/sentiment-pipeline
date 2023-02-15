@@ -12,7 +12,7 @@ def extract() -> dict:
         dt = datetime.fromtimestamp(mktime(article.published_parsed))
         data['date'].append(dt)
         data['headline'].append(article.title)
-        data['summary'].append(article.summary) 
+        #data['summary'].append(article.summary) 
     return pd.DataFrame(data)
     
 
