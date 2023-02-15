@@ -5,14 +5,13 @@ from time import mktime
 from data_pipeline import *
 
 def extract() -> dict:
-    data = {'headline': [], 'summary': [], 'date': []}
+    data = {'headline': [], 'date': []}
     NewsFeed = feedparser.parse("https://rss.nytimes.com/services/xml/rss/nyt/Business.xml")
     entry = NewsFeed.entries
     for article in entry: # For each article, make sure it falls within our date range
         dt = datetime.fromtimestamp(mktime(article.published_parsed))
         data['date'].append(dt)
         data['headline'].append(article.title)
-        #data['summary'].append(article.summary) 
     return pd.DataFrame(data)
     
 
