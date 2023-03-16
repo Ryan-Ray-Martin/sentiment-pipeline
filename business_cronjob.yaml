@@ -1,9 +1,9 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: sentiment-cronjob
+  name: sentiment-job
 spec:
-  schedule: "55 17 * * *"
+  schedule: "0 0 * * *"
   jobTemplate:
     spec:
       template:
@@ -11,8 +11,7 @@ spec:
           containers:
             - name: finbert-serve
               image: gcr.io/intrinsic-376122/sentiment-pipeline:kuberay
-              imagePullPolicy: Always
-              image: gcr.io/intrinsic-research/sentiment-pipeline:kuberay
+              imagePullPolicy: IfNotPresent
               command: ["python", "business_sentiment.py"]
               env:
                 - name: DB_USER
